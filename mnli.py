@@ -30,20 +30,7 @@ from transformers.utils import check_min_version
 from transformers.utils.versions import require_version
 
 
-task_to_keys = {
-    "cola": ("sentence", None),
-    "mnli": ("premise", "hypothesis"),
-    "mrpc": ("sentence1", "sentence2"),
-    "qnli": ("question", "sentence"),
-    "qqp": ("question1", "question2"),
-    "rte": ("sentence1", "sentence2"),
-    "sst2": ("sentence", None),
-    "stsb": ("sentence1", "sentence2"),
-    "wnli": ("sentence1", "sentence2"),
-}
-
 logger = logging.getLogger(__name__)
-
 
 @dataclass
 class DataTrainingArguments:
@@ -55,22 +42,15 @@ class DataTrainingArguments:
     """
 
     task_name: Optional[str] = field(
-        default=None,
-        metadata={"help": "The name of the task to train on: " + ", ".join(task_to_keys.keys())},
+        default=None, 
     )
     max_seq_length: int = field(
-        default=128,
+        default=512,
         metadata={
             "help": "The maximum total input sequence length after tokenization. Sequences longer "
             "than this will be truncated, sequences shorter will be padded."
         },
     )
-
-    def __post_init__(self):
-        if self.task_name is not None:
-            self.task_name = self.task_name.lower()
-            if self.task_name not in task_to_keys.keys():
-                raise ValueError("Unknown task, you should pick one in " + ",".join(task_to_keys.keys()))
 
 @dataclass
 class ModelArguments:
@@ -81,7 +61,6 @@ class ModelArguments:
     model_name_or_path: str = field(
         metadata={"help": "Path to pretrained model or model identifier from huggingface.co/models"}
     )
-
 
 def main():
 
