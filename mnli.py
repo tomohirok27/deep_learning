@@ -159,14 +159,12 @@ def main():
         trainer.save_metrics("eval", metrics)
 
         output_predict_file = os.path.join(training_args.output_dir, "eval_results.txt")
-        count=0
+
         with open(output_predict_file, "w") as f1:
             f1.writelines(["pred  gold  premise  hypothesis  \n"])
             for pred, premise, hypothesis, gold in zip(evaluation, eval_dataset['premise'], eval_dataset['hypothesis'], eval_dataset['label']):
                 label = label_list[pred]
                 gold_label = label_list[gold]
-                if label==gold_label:
-                    count+=1
                 f1.writelines([label, "\t", gold_label, "\t", premise, "\t", hypothesis, "\n"])
         
         # evaluate metrics with miss matched dataset (validation)
@@ -179,18 +177,14 @@ def main():
         trainer.save_metrics("eval_mm", metrics_mm)
 
         output_predict_file = os.path.join(training_args.output_dir, "eval_results_mm.txt")
-        print(count)
-        count=0
 
         with open(output_predict_file, "w") as f2:
             f2.writelines(["pred  gold  premise  hypothesis  \n"])
             for pred, premise, hypothesis, gold in zip(evaluation_mm, eval_dataset_mm['premise'], eval_dataset_mm['hypothesis'], eval_dataset_mm['label']):
                 label = label_list[pred]
                 gold_label = label_list[gold]
-                if label==gold_label:
-                    count+=1
                 f2.writelines([label, "\t", gold_label, "\t", premise, "\t", hypothesis, "\n"])
-        print(count)
+
     # predict 
     if training_args.do_predict:
         logger.info("*** Predict ***")
@@ -208,10 +202,6 @@ def main():
             for pred, premise, hypothesis in zip(predictions, predict_dataset['premise'], predict_dataset['hypothesis']):
                 label = label_list[pred]
                 f3.writelines([label, "\t", premise, "\t", hypothesis, "\n"])
-                # f1.write(label)
-                # f1.write(premise)
-                # f1.write(hypothesis)
-                # f1.write("\n")
 
 
         # predict with miss matched dataset (test)
@@ -227,10 +217,6 @@ def main():
             for pred, premise, hypothesis in zip(predictions_mm, predict_dataset_mm['premise'], predict_dataset_mm['hypothesis']):
                 label = label_list[pred]
                 f4.writelines([label, "\t", premise, "\t", hypothesis, "\n"])
-                # f2.write(label)
-                # f2.write(premise)
-                # f2.write(hypothesis)
-                # f2.write("\n")
   
 
 
