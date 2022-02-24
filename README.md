@@ -1,5 +1,8 @@
 # deep_learning
 
+Fine-tune ALBERT by MNLI corpus
+
+
 ## Train
 ``
 python mnli.py
@@ -7,6 +10,8 @@ python mnli.py
 --model_name_or_path albert-base-v2
 --output_dir OUTPUT_DIR 
 ``
+
+Other available options can be found in transformers.TrainingArguments
 
 ## Validation
 ``
@@ -16,6 +21,8 @@ python mnli.py
 --output_dir OUTPUT_DIR
 ``
 
+Other available options can be found in transformers.TrainingArguments
+
 ## Test
 ``
 python mnli.py
@@ -23,3 +30,5 @@ python mnli.py
 --model_name_or_path albert-base-v2
 --output_dir OUTPUT_DIR
 ``
+
+Other available options can be found in transformers.TrainingArguments
