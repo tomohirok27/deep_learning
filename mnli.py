@@ -41,9 +41,6 @@ class DataTrainingArguments:
     the command line.
     """
 
-    task_name: Optional[str] = field(
-        default=None, 
-    )
     max_seq_length: int = field(
         default=512,
         metadata={
