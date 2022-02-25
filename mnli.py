@@ -150,8 +150,8 @@ def main():
         eval_results = trainer.predict(eval_dataset)
         
         metrics = eval_results.metrics
-        evaluation = eval_results.predictions
-        evaluation =  np.argmax(evaluation, axis=1)
+        evaluation = eval_results.predictions  # evaluation = [[0.2, 0.3, 0.5] ...[0.8, 0.1, 0.1]]
+        evaluation =  np.argmax(evaluation, axis=1) # evaluation = [2, ..., 0]
         trainer.log_metrics("eval", metrics)
         trainer.save_metrics("eval", metrics)
 
