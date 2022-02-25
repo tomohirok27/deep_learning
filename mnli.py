@@ -102,11 +102,11 @@ def main():
 
     # get the metric 
     metric = load_metric("glue", "mnli")
-    def compute_metrics(p: EvalPrediction):
+    def compute_metrics(example):
 
-        preds = p.predictions
+        preds = example.predictions
         preds = np.argmax(preds, axis=1)
-        result = metric.compute(predictions=preds, references=p.label_ids)
+        result = metric.compute(predictions=preds, references=example.label_ids)
 
         return result
 
