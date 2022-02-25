@@ -79,6 +79,7 @@ def main():
     )
 
     # A map from label to index for the model
+    # {'entailment': 0, 'neutral': 1, 'contradiction': 2}
     label_list = raw_datasets["train"].features["label"].names
     model.config.label2id = {l: i for i, l in enumerate(label_list)}
     model.config.id2label = {id: label for label, id in config.label2id.items()}
