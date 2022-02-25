@@ -23,7 +23,7 @@ Other available options can be found in transformers.TrainingArguments
 ``
 python mnli.py 
 --do_eval
---model_name_or_path albert-base-v2
+--model_name_or_path OUTPUT_DIR
 --output_dir OUTPUT_DIR
 ``
 
@@ -33,7 +33,7 @@ Other available options can be found in transformers.TrainingArguments
 ``
 python mnli.py
 --do_prediction
---model_name_or_path albert-base-v2
+--model_name_or_path OUTPUT_DIR
 --output_dir OUTPUT_DIR
 ``
 
