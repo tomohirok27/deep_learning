@@ -115,6 +115,7 @@ def main():
     predict_dataset = raw_datasets["test_matched"]
 
     # Initialize our Trainer
+    # Trainer : provides an API for feature-complete training in PyTorch for most standard use cases.
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -127,7 +128,7 @@ def main():
     # train
     if training_args.do_train:
         # training
-        train_result = trainer.train() # Only single sentence
+        train_result = trainer.train() # Only single sentence about training
 
         # evaluate train metrics
         metrics = train_result.metrics
