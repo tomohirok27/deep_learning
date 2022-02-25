@@ -127,7 +127,7 @@ def main():
     # train
     if training_args.do_train:
         # training
-        train_result = trainer.train()
+        train_result = trainer.train() # Only single sentence
 
         # evaluate train metrics
         metrics = train_result.metrics
