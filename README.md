@@ -2,6 +2,10 @@
 
 Fine-tune ALBERT by MNLI corpus
 
+# Prepare
+``
+pip install transformers
+``
 
 ## Train
 ``
